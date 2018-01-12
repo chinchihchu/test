@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>CucumberTest</name>
-	<comment></comment>
+	<comment>just a comment</comment>
 	<projects>
 	</projects>
 	<buildSpec>
