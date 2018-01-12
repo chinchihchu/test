@@ -15,6 +15,7 @@ public class BrightTalk implements Constants {
 
 	public static WebDriver driver = null;
 	public static WebDriverWait waitVar = null;
+	public boolean Registered_INDEX = false;
 	
 	public void createDriver() throws MalformedURLException, InterruptedException {
 		driver = new FirefoxDriver();
@@ -27,11 +28,21 @@ public class BrightTalk implements Constants {
 	public void goToURL(String url) {
 		 driver.get(url);
 	}
+	
+	public void deleteUser() {
+	
+		if (Registered_INDEX ) {
+			clickElement(EDIT_PROFILE);
+			clickElement(DELETE_ME_FROM_BRIGHT_TALK);
+			clickElement(DELETE);
+			clickElement(YES);
+		}
+	}
 	public void teardown() {
-		clickElement(EDIT_PROFILE);
-		clickElement(DELETE_ME_FROM_BRIGHT_TALK);
-		clickElement(DELETE);
-		clickElement(YES);
+		//clickElement(EDIT_PROFILE);
+		//clickElement(DELETE_ME_FROM_BRIGHT_TALK);
+		//clickElement(DELETE);
+		//clickElement(YES);
 		driver.quit();
 	}
 	
@@ -90,30 +101,51 @@ public class BrightTalk implements Constants {
 				assertTrue(ELEMENT_PRESENT_ERROR_MSG, driver.findElement(by).isDisplayed());
 			} catch (Exception e) {
 				e.printStackTrace();
+				if (Registered_INDEX ) {
+					deleteUser();
+					Registered_INDEX = false;
+				}
 			}
 		else {
 			try {
 				assertFalse(ELEMENT_PRESENT_ERROR_MSG, driver.findElement(by).isDisplayed());
 			} catch (Exception e) {
 				e.printStackTrace();
+				if (Registered_INDEX ) {
+					deleteUser();
+					Registered_INDEX = false;
+				}
 			}
 			
 		}
 				
 	}
 	
-	public void assertTrue (String errorMsg, boolean assertStringResult) throws Exception {
+	public void assertTrue (String errorMsg, boolean assertStringResult) {
 		if (!assertStringResult) {
-			System.out.println(errorMsg);
-			throw new Exception (errorMsg);
+			System.out.println("[FAILED] : " + errorMsg);
+			if (Registered_INDEX )
+				deleteUser();
+			try {
+				throw new Exception (errorMsg);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
-	public void assertFalse (String errorMsg, boolean assertStringResult) throws Exception {
+	public void assertFalse (String errorMsg, boolean assertStringResult) {
 		if (assertStringResult) {
-			System.out.println(errorMsg);
-			throw new Exception (errorMsg);
+			System.out.println("[FAILED] : " + errorMsg);
+			if (Registered_INDEX )
+				deleteUser();
+			try {
+				throw new Exception (errorMsg);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

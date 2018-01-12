@@ -10,7 +10,7 @@ public interface Constants {
 	public static final By EDIT_PROFILE = By.xpath("//a[contains(@class,'btn btn-tertiary profile-edit-link') and contains(text(),'Edit profile')]");
 	public static final By EDIT_PROFILE_LINK = By.xpath("//a[contains(@class,'profile-menu-edit-profile-link')]");
 	public static final By LOGO_ICON = By.xpath("//img[contains(@class,'logo') and contains(@title,'BrightTalk')]");
-
+	public static final By JOIN_BRIGHTTALK = By.xpath("//h1[contains(text(),'Join BrightTALK™ for free')]");
 	public static final By DELETE_ME_FROM_BRIGHT_TALK = By.xpath("//a[contains(@class,'bulletlink') and contains(text(),'Delete me from BrightTALK™')]");
 	public static final By DELETE = By.xpath("//input[contains(@class,'button button-delete') and contains(@type,'submit')]");
 	public static final By LOG_IN = By.xpath("//input[contains(@class,'login-button') and contains(@type,'submit')]");

@@ -19,13 +19,18 @@ public class GithubLoginSD implements Constants {
     BrightTalk bt = new BrightTalk();
     TextField text = new TextField();
     DropDown dropdown = new DropDown();
-    //Button bt = new Button();
     Button button = new Button();
+    
+    public static final String FIRST_NAME = "Chin-Chih";
+    public static final String LAST_NAME = "Chu";
+    public static final String EMAIL_ADDR = "chinchih_chu@email.com";
+    public static final String PASSWORD = "testpassword1";
+    public static final String TIMEZONE = "United Kingdom - London";
    
     @Given("^user is on github homepage$")
     public void user_is_on_brighttalk_website() throws MalformedURLException,
-            InterruptedException {
-        bt.createDriver();
+        InterruptedException {
+    		bt.createDriver();
         bt.isHomePageDisplayed();
     }
 
@@ -33,27 +38,17 @@ public class GithubLoginSD implements Constants {
     public void user_clicks_on_Join_Now_button() {
     		bt.clickElement(JOIN_IN);
         register();
-       // bt.clickElement(LOGIN);
-       // bt.isLoginPageDisplayed();
-        //login();
+        bt.Registered_INDEX = true;
         bt.goToURL(knowledgeFeedURL);
-        //bt.clickElement(LOGO_ICON);
-        //bt.clickElement(PROFILE_ICON);
-        //bt.clickElement(EDIT_PROFILE_LINK);
         bt.isLoginsuccessful();
         bt.clickElement(EDIT_PROFILE);
         editProfile();
         bt.clickElement(SAVE_CHANGE);
-        bt.clickElement(RETURN_TO_MY_BRIGHT_TALK);
-        //sf.clickElement(JOIN_IN);
-        //register();
-        
-        
+        bt.clickElement(RETURN_TO_MY_BRIGHT_TALK);        
     }
 
     @Then("^user is displayed login screen$")
     public void user_is_displayed_join_screen() throws Exception {
-       // sf.isJoinSectionDisplayed();
     		WebElement userNameEle = bt.getElement(PROFILE_CARD_NAME);
     		if (userNameEle != null) {
     			String userName = userNameEle.getText();
@@ -61,27 +56,28 @@ public class GithubLoginSD implements Constants {
     		} else
     			bt.assertTrue(PROFILE_CARD_NAME_NOT_FOUND_ERROR_MESSAGE, false);
     		
+    		bt.deleteUser();
         bt.teardown();
     }
     
     public void register() {
-    		text.setField(FIRST_NAME_INPUT, "Chin-Chih");
-        text.setField(LAST_NAME_INPUT, "Chu");
-        text.setField(EMAIL_ADDRESS_INPUT, "chinchih_chu@email.com");
-        text.setField(PASSWORD_INPUT, "testpassword1");
-        dropdown.selectOption(TIME_ZONE_SELECT, "United Kingdom - London");
+    		bt.assertElementPresent(JOIN_BRIGHTTALK, true);
+    		text.setField(FIRST_NAME_INPUT, FIRST_NAME);
+        text.setField(LAST_NAME_INPUT, LAST_NAME);
+        text.setField(EMAIL_ADDRESS_INPUT, EMAIL_ADDR);
+        text.setField(PASSWORD_INPUT, PASSWORD);
+        dropdown.selectOption(TIME_ZONE_SELECT, TIMEZONE);
         bt.clickElement(JOIN);
-        //button.submit(SUBMIT);
     }
     
     public void login() {
-    	 	text.setField(USER_LOGIN_EMAIL_INPUT, "chinchih_chu@email.com");
-        text.setField(USER_LOGIN_PASSWORD_INPUT, "testpassword1");
+    	 	text.setField(USER_LOGIN_EMAIL_INPUT, EMAIL_ADDR);
+        text.setField(USER_LOGIN_PASSWORD_INPUT, PASSWORD);
         bt.clickElement(LOG_IN);
-        //button.submit(LOG_IN);
     }
     
     public void editProfile() {
+    	// TODO : declare constants for those strings
     		text.setField(PROFILE_LAST_NAME_INPUT, "Froehlich");
     		text.setField(PROFILE_TELEPHONE_INPUT, "12345678900");
     		text.setField(PROFILE_JOB_TITLE_INPUT, "Engineer");
