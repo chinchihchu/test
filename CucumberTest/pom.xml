@@ -5,30 +5,63 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Cucumber-book-blog</name>
   <description>Cucumber-book-blog</description>
-  
-  <dependencies>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-        </dependency>
-    </dependencies>
-  <dependencyManagement>
-  	<dependencies>
+  <repositories>
+	  <repository>
+	  	<id>repo</id>
+	  	<url>file:///${project.basedir}/repo/lib</url>
+	  </repository>
+  </repositories>
+	<dependencies>
+		<dependency>
+	  		<groupId>cobertura</groupId>
+	  		<artifactId>cobertura</artifactId>
+	  		<version>2.1.1</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>cucumber-core</groupId>
+	  		<artifactId>cucumber-core</artifactId>
+	  		<version>2.3.1</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>cucumber-java</groupId>
+	  		<artifactId>cucumber-java</artifactId>
+	  		<version>2.3.1</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>cucumber-jvm-deps</groupId>
+	  		<artifactId>cucumber-jvm-deps</artifactId>
+	  		<version>1.0.6</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>cucumber-junit</groupId>
+	  		<artifactId>cucumber-junit</artifactId>
+	  		<version>2.3.1</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>cucumber-reporting</groupId>
+	  		<artifactId>cucumber-reporting</artifactId>
+	  		<version>3.13.0</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>gherkin</groupId>
+	  		<artifactId>gherkin</artifactId>
+	  		<version>5.0.0</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>mockito-all</groupId>
+	  		<artifactId>mockito-all</artifactId>
+	  		<version>2.0.2-beta</version>
+	  	</dependency>
+	  	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
   		<dependency>
-  			<groupId>info.cukes</groupId>
-  			<artifactId>cucumber-java</artifactId>
-  			<version>2.3.1</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>info.cukes</groupId>
-  			<artifactId>cucumber-junit</artifactId>
-  			<version>2.3.1</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>org.seleniumhq.selenium</groupId>
+  			<groupId>selenium-java</groupId>
   			<artifactId>selenium-java</artifactId>
   			<version>2.53.0</version>
   		</dependency>
   	</dependencies>
-  </dependencyManagement>
 </project>
