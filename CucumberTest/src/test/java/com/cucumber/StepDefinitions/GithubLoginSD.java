@@ -23,36 +23,37 @@ public class GithubLoginSD implements Constants {
     
     public static final String FIRST_NAME = "Chin-Chih";
     public static final String LAST_NAME = "Chu";
+    public static final String UPDATE_LAST_NAME = "Froehlich";
     public static final String EMAIL_ADDR = "chinchih_chu@email.com";
     public static final String PASSWORD = "testpassword1";
     public static final String TIMEZONE = "United Kingdom - London";
    
-    @Given("^user is on github homepage$")
-    public void user_is_on_brighttalk_website() throws MalformedURLException,
+    @Given("^a registered user login BrightTalk homepage$")
+    public void user_register_and_login_brighttalk_website() throws MalformedURLException,
         InterruptedException {
     		bt.createDriver();
         bt.isHomePageDisplayed();
-    }
-
-    @When("^user clicks on Sign in button$")
-    public void user_clicks_on_Join_Now_button() {
-    		bt.clickElement(JOIN_IN);
+		bt.clickElement(JOIN_IN);
         register();
         bt.Registered_INDEX = true;
         bt.goToURL(knowledgeFeedURL);
         bt.isLoginsuccessful();
+    }
+
+    @When("^user update the last name$")
+    public void user_update_the_last_name() {
         bt.clickElement(EDIT_PROFILE);
         editProfile();
         bt.clickElement(SAVE_CHANGE);
         bt.clickElement(RETURN_TO_MY_BRIGHT_TALK);        
     }
 
-    @Then("^user is displayed login screen$")
-    public void user_is_displayed_join_screen() throws Exception {
+    @Then("^the updated last name should display correctly on Knowledge Feed page$")
+    public void user_last_name_update_in_knowledge_feed_page() throws Exception {
     		WebElement userNameEle = bt.getElement(PROFILE_CARD_NAME);
     		if (userNameEle != null) {
     			String userName = userNameEle.getText();
-    			bt.assertTrue("User name incorrect", userName.equals("Chin-Chih Froehlich"));
+    			bt.assertTrue("User name incorrect: expected = " + FIRST_NAME + " " + UPDATE_LAST_NAME  + " , actual = " + userName , userName.equals("Chin-Chih Froehlich"));
     		} else
     			bt.assertTrue(PROFILE_CARD_NAME_NOT_FOUND_ERROR_MESSAGE, false);
     		

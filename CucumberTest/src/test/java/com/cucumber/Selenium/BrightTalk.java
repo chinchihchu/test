@@ -36,6 +36,7 @@ public class BrightTalk implements Constants {
 			clickElement(DELETE_ME_FROM_BRIGHT_TALK);
 			clickElement(DELETE);
 			clickElement(YES);
+			Registered_INDEX = false;
 		}
 	}
 	public void teardown() {
@@ -124,7 +125,7 @@ public class BrightTalk implements Constants {
 	public void assertTrue (String errorMsg, boolean assertStringResult) {
 		if (!assertStringResult) {
 			System.out.println("[FAILED] : " + errorMsg);
-			if (Registered_INDEX )
+			if (Registered_INDEX ) 
 				deleteUser();
 			try {
 				throw new Exception (errorMsg);
